@@ -28,7 +28,8 @@ for line in lines:
 		if tokenizedline[nicktokennumber] != lastnick: #different nick
 			# print(tokenizedline[nicktokennumber])
 			# print(lastnick)
-			output.write('\r\n' + tokenizedline[nicktokennumber] + ':')
+			cleanednick=tokenizedline[nicktokennumber].replace('<','').replace('>','')
+			output.write('\r\n' + cleanednick + ':')
 	except:
 		continue
 	for word in range(nicktokennumber+1,len(tokenizedline)):
