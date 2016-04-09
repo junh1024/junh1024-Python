@@ -1,11 +1,7 @@
 from io import StringIO
 
-
-
 text = """
 <junh1024> Both upscaled to 2/3 ch
-<junh1024> I upscale to 6/7 ch this time
-<junh1024> In prev 2, i made fake stereo width, this time, it's all real stereo, but i chopped it up lots
 <junh1024> so 3xstereo vs 3xmono
 <drf|Desktop> I mean
 <drf|Desktop> I'm still fine with just making it actual mono
@@ -21,7 +17,6 @@ lastnick=""
 lines = text.splitlines() #split by line
 output = StringIO() #riced string
 
-
 for line in lines:
 	tokenizedline = line.split(' ')
 	try:
@@ -30,10 +25,17 @@ for line in lines:
 			# print(lastnick)
 			cleanednick=tokenizedline[nicktokennumber].replace('<','').replace('>','')
 			output.write('\r\n' + cleanednick + ':')
+		
 	except:
 		continue
 	for word in range(nicktokennumber+1,len(tokenizedline)):
-		output.write(' '+ tokenizedline[word]) #print the the rest of the lines
+		output.write(' ')
+		if word == nicktokennumber+1: #1st word
+			capitalizedfirstword = tokenizedline[word]
+			capitalizedfirstword = capitalizedfirstword.capitalize()
+			output.write(capitalizedfirstword)
+		else:
+			output.write(tokenizedline[word]) #print the the rest of the lines
 	output.write('.') #add full top
 	lastnick=tokenizedline[nicktokennumber]
 	# print(lastnick)
