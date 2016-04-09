@@ -10,6 +10,8 @@ text = """
 """
 
 text=text.replace(" i "," I ")#capitalize Is
+text=text.replace("junh1024","J")#replace my own nick, saves space
+text=text.replace("junh1024-XD","J")
 
 nicktokennumber = 0 #0 = first token
 lastnick=""
@@ -20,14 +22,14 @@ output = StringIO() #riced string
 for line in lines:
 	tokenizedline = line.split(' ')
 	try:
-		if tokenizedline[nicktokennumber] != lastnick: #different nick
+		if tokenizedline[nicktokennumber] != lastnick: #new person speaking
 			# print(tokenizedline[nicktokennumber])
 			# print(lastnick)
-			cleanednick=tokenizedline[nicktokennumber].replace('<','').replace('>','')
+			cleanednick=tokenizedline[nicktokennumber].replace('<','').replace('>','') #remove mIRC carets
 			output.write('\r\n' + cleanednick + ':')
-		
 	except:
-		continue
+		continue #silences errors if lines are too short to parse
+	
 	for word in range(nicktokennumber+1,len(tokenizedline)):
 		output.write(' ')
 		if word == nicktokennumber+1: #1st word
