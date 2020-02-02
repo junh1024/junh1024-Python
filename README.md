@@ -1,6 +1,6 @@
 # IRC2Interview
 
-What this does is convert IRC logs to interviews/play style text
+This converts IRC logs to interviews/play style text
 
 Features:
 - Removes nick carets
